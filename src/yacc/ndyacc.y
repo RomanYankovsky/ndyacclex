@@ -496,7 +496,7 @@ function TLexer.parse() : integer;
       const
         no_of_entries = 12;
         max_entry_length = 8;
-        keys : array [1..no_of_entries] of String[max_entry_length] = (
+        keys : array [1..no_of_entries] of AnsiString = (
           '0', '2', 'binary', 'left', 'nonassoc', 'prec', 'right',
           'start', 'term', 'token', 'type', 'union');
         toks : array [1..no_of_entries] of integer = (
@@ -667,6 +667,7 @@ begin
 
   if paramCount=0 then
     begin
+      writeln;
       writeln(usage);
       writeln(options);
       halt(0);
@@ -747,7 +748,7 @@ begin
 
   if (parser.parse() = 0) then
     { done }
-  else if yychar=0 then
+  else if parser.yychar=0 then
     error(unexpected_eof)
   else
     error(syntax_error);

@@ -6,7 +6,6 @@ interface
 uses
 	SysUtils,
 	Classes,
-	dlib,
 	yacclib,
 	lexlib,
         uStreamLexer;

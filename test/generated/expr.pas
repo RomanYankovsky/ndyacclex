@@ -6,7 +6,6 @@ interface
 uses
 	SysUtils,
 	Classes,
-	dlib,
 	yacclib,
 	lexlib,
         uStreamLexer;
@@ -74,51 +73,51 @@ begin
 1 : begin
        end;
 2 : begin
-         // source: expr.y line#31
+         // source: expr.y line#30
          yyaccept; 
        end;
 3 : begin
-         // source: expr.y line#32
+         // source: expr.y line#31
          writecallback(yyv[yysp-1].yyReal); 
        end;
 4 : begin
-         // source: expr.y line#33
+         // source: expr.y line#32
          x[yyv[yysp-3].yyInteger] := yyv[yysp-1].yyReal; writecallback(yyv[yysp-1].yyReal); 
        end;
 5 : begin
-         // source: expr.y line#34
+         // source: expr.y line#33
          yyerrok; 
        end;
 6 : begin
-         // source: expr.y line#37
+         // source: expr.y line#36
          yyval.yyReal := yyv[yysp-2].yyReal + yyv[yysp-0].yyReal; 
        end;
 7 : begin
-         // source: expr.y line#38
+         // source: expr.y line#37
          yyval.yyReal := yyv[yysp-2].yyReal - yyv[yysp-0].yyReal; 
        end;
 8 : begin
-         // source: expr.y line#39
+         // source: expr.y line#38
          yyval.yyReal := yyv[yysp-2].yyReal * yyv[yysp-0].yyReal; 
        end;
 9 : begin
-         // source: expr.y line#40
+         // source: expr.y line#39
          yyval.yyReal := yyv[yysp-2].yyReal / yyv[yysp-0].yyReal; 
        end;
 10 : begin
-         // source: expr.y line#41
+         // source: expr.y line#40
          yyval.yyReal := yyv[yysp-1].yyReal; 
        end;
 11 : begin
-         // source: expr.y line#42
+         // source: expr.y line#41
          yyval.yyReal := -yyv[yysp-0].yyReal; 
        end;
 12 : begin
-         // source: expr.y line#44
+         // source: expr.y line#43
          yyval.yyReal := yyv[yysp-0].yyReal; 
        end;
 13 : begin
-         // source: expr.y line#45
+         // source: expr.y line#44
          yyval.yyReal := x[yyv[yysp-0].yyInteger]; 
        end;
 // source: yyparse.cod line# 49
