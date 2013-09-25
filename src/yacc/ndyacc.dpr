@@ -38,7 +38,6 @@ program ndyacc;
 
 uses
   SysUtils,
-  dlib,
   lexlib,
   yacclib,
   yaccbase,

@@ -6,7 +6,7 @@
   Copyright (c) 1990-92  Albert Graef <ag@muwiinfa.geschichte.uni-mainz.de>
   Copyright (C) 1996     Berend de Boer <berend@pobox.com>
   Copyright (c) 1998     Michael Van Canneyt <Michael.VanCanneyt@fys.kuleuven.ac.be>
-  
+
   ## $Id: yacclib.pas 1697 2005-12-19 16:27:41Z druid $
 
   This library is free software; you can redistribute it and/or
@@ -25,85 +25,85 @@
 }
 
 {$I-}
-
 unit yacclib;
 
 interface
 
 const
   yymaxdepth = 1024;
-(* default stack size of parser *)
+  (* default stack size of parser *)
 
 type
   YYSType = integer;
-(* default value type, may be redefined in Yacc output file *)
+  (* default value type, may be redefined in Yacc output file *)
 
-var
+  TCustomParser = class
+  protected
+    yychar: integer; (* current lookahead character *)
+    yynerrs: integer;
+    yyerrflag: integer;
+    (* Flags used internally by the parser routine: *)
+    yyflag: (yyfnone, yyfaccept, yyfabort, yyferror);
+  public
+    (* current number of syntax errors reported by the
+      parser *)
+    procedure yyerror(msg: string);
+    (* error message printing routine used by the parser *)
 
-  yychar:  integer; (* current lookahead character *)
-  yynerrs: integer;
+    procedure yyclearin;
+    (* delete the current lookahead token *)
 
-(* current number of syntax errors reported by the
-                       parser *)
-procedure yyerror(msg: string);
-(* error message printing routine used by the parser *)
+    procedure yyaccept;
+    (* trigger accept action of the parser; yyparse accepts returning 0, as if
+      it reached end of input *)
 
-procedure yyclearin;
-(* delete the current lookahead token *)
+    procedure yyabort;
+    (* like yyaccept, but causes parser to return with value 1, as if an
+      unrecoverable syntax error had been encountered *)
 
-procedure yyaccept;
-  (* trigger accept action of the parser; yyparse accepts returning 0, as if
-     it reached end of input *)
+    procedure yyerrlab;
+    (* causes error recovery to be started, as if a syntax error had been
+      encountered *)
 
-procedure yyabort;
-  (* like yyaccept, but causes parser to return with value 1, as if an
-     unrecoverable syntax error had been encountered *)
+    procedure yyerrok;
+    (* when in error mode, resets the parser to its normal mode of
+      operation *)
 
-procedure yyerrlab;
-  (* causes error recovery to be started, as if a syntax error had been
-     encountered *)
-
-procedure yyerrok;
-  (* when in error mode, resets the parser to its normal mode of
-     operation *)
-
-(* Flags used internally by the parser routine: *)
-
-var
-
-  yyflag:    (yyfnone, yyfaccept, yyfabort, yyferror);
-  yyerrflag: integer;
+    function parse() : integer; virtual; abstract;
+  end;
 
 implementation
 
-procedure yyerror(msg: string);
+procedure TCustomParser.yyerror(msg: string);
 begin
   writeln(msg);
-end(*yyerrmsg*);
+end (* yyerrmsg *);
 
-procedure yyclearin;
+procedure TCustomParser.yyclearin;
 begin
   yychar := -1;
-end(*yyclearin*);
+end (* yyclearin *);
 
-procedure yyaccept;
+procedure TCustomParser.yyaccept;
 begin
   yyflag := yyfaccept;
-end(*yyaccept*);
+end (* yyaccept *);
 
-procedure yyabort;
+procedure TCustomParser.yyabort;
 begin
   yyflag := yyfabort;
-end(*yyabort*);
+end (* yyabort *);
 
-procedure yyerrlab;
+procedure TCustomParser.yyerrlab;
 begin
   yyflag := yyferror;
-end(*yyerrlab*);
+end (* yyerrlab *);
 
-procedure yyerrok;
+procedure TCustomParser.yyerrok;
 begin
   yyerrflag := 0;
-end(*yyerrork*);
+end (* yyerrork *);
 
-end(*YaccLib*).
+end (* YaccLib *)
+
+  .
