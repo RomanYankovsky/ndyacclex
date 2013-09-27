@@ -43,6 +43,8 @@ __history/
 ## Lazarus/FreePascal
 #################
 *.o
+*.a
+*.or
 *.ppu
 *.bak
 *.compiled
