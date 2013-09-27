@@ -29,6 +29,10 @@
 {$I-}
 program ndlex;
 
+{$IFDEF FPC}
+  {$MODE Delphi}
+{$ENDIF}
+
 {$APPTYPE CONSOLE}
 
 uses
