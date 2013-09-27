@@ -3,8 +3,13 @@ unit frmTest;
 interface
 
 uses
+  {$IFDEF FPC}
+  Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, Dialogs, expr, StdCtrls;
+  {$ELSE}
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, expr, Vcl.StdCtrls;
+  {$ENDIF}
 
 type
   TForm1 = class(TForm)
@@ -37,7 +42,11 @@ begin
     Key := #0;
     Memo1.Lines.Add('> ' + Edit1.Text);
 
+    {$IFDEF FPC}
+    StrStream := TStringStream.Create('');
+    {$ELSE}
     StrStream := TStringStream.Create;
+    {$ENDIF}
     try
       StrStream.WriteString(Edit1.Text);
       StrStream.Position := 0;
