@@ -27,6 +27,11 @@
 }
 
 program ndyacc;
+
+{$IFDEF FPC}
+  {$MODE Delphi}
+{$ENDIF}
+
 {$APPTYPE CONSOLE}
 {$X+}
 {$I-}
