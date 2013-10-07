@@ -40,6 +40,17 @@ __history/
 *.dproj
 
 #################
+## Lazarus/FreePascal
+#################
+*.o
+*.a
+*.or
+*.ppu
+*.bak
+*.compiled
+*.lps
+
+#################
 ## Visual Studio
 #################
 
